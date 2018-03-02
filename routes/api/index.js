@@ -1,32 +1,15 @@
-const router = require("express").Router();
-const cheerio = require('cheerio');
-const request = require('request');
+const express = require('express');
+const router = express.Router();
+// const router = require('express').Router();
 
+router.use('/scraper', require('./scraper'));
 
-router.get("/amiibos", (req, res) => {
-  
-  request('https://www.nintendo.com/amiibo/line-up', function(error, response, html) {
+// router.use("/scraper", function(req, res) {
+//     scraper(req.body.restaurant).then(data => {
+//         res.send(data);
+//     });
+// });
 
-    let $ = cheerio.load(html);
-
-    let amiibos = [];
-
-    $('div.b3.amiibo-name').each(function(i, element) {
-      let nameObj = { 
-        name: element.children[0].data
-      }
-      amiibos.push(nameObj);
-    });
-
-    $('.boxart').each(function(i, element) {
-      let p = element.children[0].next.attribs.src;
-      Object.assign(amiibos[i], {img: 'https:' + p});
-    });
-
-  });
-
-});
+//other routes
 
 module.exports = router;
-
-

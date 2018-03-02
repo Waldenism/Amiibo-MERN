@@ -1,4 +1,8 @@
-# Create React Express App
+# AMIIBO MERN APP
+
+v 0.0.2
+
+## Create React Express App
 
 ## About This Boilerplate
 
